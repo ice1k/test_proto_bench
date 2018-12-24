@@ -1,0 +1,27 @@
+[package]
+name = "test_proto_bench"
+version = "0.1.0"
+authors = ["ice1000 <ice1000kotlin@foxmail.com>"]
+edition = "2018"
+
+[dependencies]
+protobuf = { version = "2.2" }
+quick-protobuf = { version = "0.6.3" }
+prost = { version = "0.4" }
+prost-derive = { version = "0.4" }
+protobuf-codegen-pure = { version = "2.2" }
+bytes = { version = "0.4.11" }
+
+[build-dependencies]
+prost-build = { version = "0.4" }
+
+[dev-dependencies]
+criterion = "0.2"
+
+[[bench]]
+name = "pr_bench"
+harness = false
+
+[[bench]]
+name = "rp_bench"
+harness = false
