@@ -32,15 +32,16 @@ fn mock_req_header() -> RaftRequestHeader {
 fn mock_get_req() -> GetRequest {
     GetRequest {
         cf: String::from("Jojo! This is the last of my hamon!"),
-        key: vec![1, 2, 3, 4],
+        key: mock_vec(),
     }
 }
 
 fn mock_put_req() -> PutRequest {
+    let data = mock_vec();
     PutRequest {
         cf: String::from("I reject my humanity, Jojo!"),
-        key: vec![1, 2, 3, 4],
-        value: vec![5, 4, 3, 2],
+        key: data.clone(),
+        value: data,
     }
 }
 
@@ -95,7 +96,7 @@ fn mock_entry() -> Entry {
 
 fn mock_snapshot() -> Snapshot {
     Snapshot {
-        data: vec![1, 2, 3],
+        data: mock_vec(),
         metadata: None,
     }
 }
@@ -113,7 +114,7 @@ fn mock_message() -> EraMessage {
         snapshot: Some(mock_snapshot()),
         reject: false,
         reject_hint: 9,
-        context: vec![2, 3, 4, 4, 5],
+        context: mock_vec(),
     }
 }
 

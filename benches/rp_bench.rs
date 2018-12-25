@@ -30,15 +30,16 @@ fn mock_req_header() -> RaftRequestHeader {
 fn mock_get_req() -> GetRequest {
     let mut a = GetRequest::new();
     a.cf = String::from("Jojo! This is the last of my hamon!");
-    a.key = vec![1, 2, 3, 4];
+    a.key = mock_vec();
     a
 }
 
 fn mock_put_req() -> PutRequest {
     let mut a = PutRequest::new();
     a.cf = String::from("Jojo! This is the last of my hamon!");
-    a.key = vec![1, 2, 3, 4];
-    a.value = vec![5, 4, 3, 2];
+    let data = mock_vec();
+    a.key = data.clone();
+    a.value = data;
     a
 }
 
@@ -78,7 +79,7 @@ fn mock_entry() -> Entry {
 
 fn mock_snapshot() -> Snapshot {
     let mut a = Snapshot::new();
-    a.data = vec![1, 2, 3];
+    a.data = mock_vec();
     a
 }
 
@@ -95,12 +96,12 @@ fn mock_message() -> EraMessage {
     a.set_snapshot(mock_snapshot());
     a.reject = false;
     a.reject_hint = 9;
-    a.context = vec![2, 3, 4, 4, 5];
+    a.context = mock_vec();
     a
 }
 
 fn encode_message(test: &EraMessage) {
-    let mut buf = Vec::with_capacity(1024);
+    let mut buf = Vec::with_capacity(10240);
     test.write_to_vec(&mut buf).unwrap();
 }
 
@@ -109,7 +110,7 @@ fn decode_message(test: &Vec<u8>) {
 }
 
 fn encode_raft_cmd_req(test: &RaftCmdRequest) {
-    let mut buf = Vec::with_capacity(2048);
+    let mut buf = Vec::with_capacity(20480);
     test.write_to_vec(&mut buf).unwrap();
 }
 
