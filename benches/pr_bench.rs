@@ -9,6 +9,14 @@ use test_proto_bench::pr::raft_cmdpb::{RaftCmdRequest, Request, RaftRequestHeade
 use test_proto_bench::pr::eraftpb::Message as EraMessage;
 use test_proto_bench::pr::eraftpb::{Entry, Snapshot};
 
+pub fn mock_vec() -> Vec<u8> {
+    let mut data = Vec::with_capacity(1000);
+    for i in 0..data.len() {
+        data.push(i as u8);
+    }
+    data
+}
+
 fn mock_req_header() -> RaftRequestHeader {
     RaftRequestHeader {
         region_id: 2,
@@ -74,12 +82,13 @@ fn mock_raft_cmd_req() -> RaftCmdRequest {
 }
 
 fn mock_entry() -> Entry {
+    let data = mock_vec();
     Entry {
         entry_type: 1,
         term: 7,
         index: 8,
-        data: vec![1, 2, 3],
-        context: vec![2, 3, 4],
+        data: data.clone(),
+        context: data,
         sync_log: true,
     }
 }
