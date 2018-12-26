@@ -158,6 +158,10 @@ fn criterion_bench(c: &mut Criterion) {
         raft_cmd_request.encode(&mut raft_cmd_request_buf).unwrap();
         b.iter(|| decode_raft_cmd_req(&raft_cmd_request_buf))
     });
+    c.bench_function("pr set repeated field", |b| {
+        let mut raft_cmd_request = mock_raft_cmd_req();
+        b.iter(|| raft_cmd_request.requests = vec![])
+    });
 }
 
 criterion_group!(benches, criterion_bench);

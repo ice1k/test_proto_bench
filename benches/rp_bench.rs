@@ -135,6 +135,10 @@ fn criterion_bench(c: &mut Criterion) {
         let raft_cmd_request_bytes = mock_raft_cmd_req().write_to_bytes().unwrap();
         b.iter(|| decode_raft_cmd_req(&raft_cmd_request_bytes))
     });
+    c.bench_function("rp set repeated field", |b| {
+        let mut raft_cmd_request = mock_raft_cmd_req();
+        b.iter(|| raft_cmd_request.set_requests(RepeatedField::from_vec(vec![])))
+    });
 }
 
 criterion_group!(benches, criterion_bench);
