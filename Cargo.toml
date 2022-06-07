@@ -7,7 +7,7 @@ edition = "2018"
 [dependencies]
 protobuf = { version = "2.2" }
 quick-protobuf = { version = "0.6.3" }
-prost = { version = "0.4" }
+prost = { version = "0.6" }
 prost-derive = { version = "0.4" }
 protobuf-codegen-pure = { version = "2.2" }
 bytes = { version = "0.4.11" }
