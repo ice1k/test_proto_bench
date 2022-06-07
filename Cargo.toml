@@ -5,7 +5,7 @@ authors = ["ice1000 <ice1000kotlin@foxmail.com>"]
 edition = "2018"
 
 [dependencies]
-protobuf = { version = "2.2" }
+protobuf = { version = "3.0" }
 quick-protobuf = { version = "0.6.3" }
 prost = { version = "0.6" }
 prost-derive = { version = "0.4" }
